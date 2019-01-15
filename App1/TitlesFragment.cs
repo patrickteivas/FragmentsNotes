@@ -30,7 +30,7 @@ namespace App1
             databaseService.CreateDatabaseWithTable();
             notes = databaseService.GetAllNotes();
 
-            ListAdapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x=>x.Title).ToArray());
+            ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x=>x.Title).ToArray());
 
             if (savedInstanceState != null)
             {
@@ -46,10 +46,10 @@ namespace App1
 
         public override void OnListItemClick(ListView l, View v, int position, long id)
         {
-            ShowPlayQuote(position);
+            ShowNoteContent(position);
         }
 
-        void ShowPlayQuote(int playId)
+        void ShowNoteContent(int playId)
         {
             var intent = new Intent(Activity, typeof(NoteActivity));
             intent.PutExtra("current_id", notes[playId].Id);
