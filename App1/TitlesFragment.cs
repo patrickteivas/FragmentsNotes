@@ -16,6 +16,7 @@ namespace App1
     public class TitlesFragment : ListFragment
     {
         int selectedShowId;
+        public List<Note> notes;
 
         public TitlesFragment()
         {
@@ -27,7 +28,9 @@ namespace App1
             base.OnActivityCreated(savedInstanceState);
             var databaseService = new DatabaseService();
             databaseService.CreateDatabaseWithTable();
-            ListAdapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemActivated1, databaseService.GetAllNotes().Select(x=>x.Title).ToArray());
+            notes = databaseService.GetAllNotes();
+
+            ListAdapter = new ArrayAdapter<String>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x=>x.Title).ToArray());
 
             if (savedInstanceState != null)
             {
@@ -49,7 +52,7 @@ namespace App1
         void ShowPlayQuote(int playId)
         {
             var intent = new Intent(Activity, typeof(NoteActivity));
-            intent.PutExtra("current_id", playId);
+            intent.PutExtra("current_id", notes[playId].Id);
             StartActivity(intent);
         }
     }
