@@ -13,6 +13,10 @@ namespace App1
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
+
+            var toolbar = FindViewById<Toolbar>(Resource.Layout.toolbar);
+
+            SetActionBar(toolbar);
         }
     }
 }
