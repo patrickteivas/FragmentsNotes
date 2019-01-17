@@ -33,11 +33,14 @@ namespace App1
 
             var databaseService = new DatabaseService();
             databaseService.CreateDatabaseWithTable();
+
+            var notes = databaseService.GetAllNotes();
+
             var textView = new TextView(Activity);
             var padding = Convert.ToInt32(TypedValue.ApplyDimension(ComplexUnitType.Dip, 4, Activity.Resources.DisplayMetrics));
             textView.SetPadding(padding, padding, padding, padding);
             textView.TextSize = 24;
-            textView.Text = databaseService.GetOneNote(ShowId).Content;
+            textView.Text = notes[ShowId].Content;
 
             var scroller = new ScrollView(Activity);
             scroller.AddView(textView);

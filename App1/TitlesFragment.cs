@@ -15,6 +15,7 @@ namespace App1
 {
     public class TitlesFragment : ListFragment
     {
+        bool showingTwoFragments;
         int selectedShowId;
         public List<Note> notes;
 
@@ -36,6 +37,15 @@ namespace App1
             {
                 selectedShowId = savedInstanceState.GetInt("current_id", 0);
             }
+
+            var quoteContainer = Activity.FindViewById(Resource.Id.playquote_container);
+            showingTwoFragments = quoteContainer != null &&
+                                  quoteContainer.Visibility == ViewStates.Visible;
+            if (showingTwoFragments)
+            {
+                ListView.ChoiceMode = ChoiceMode.Single;
+                ShowNoteContent(selectedShowId);
+            }
         }
 
         public override void OnSaveInstanceState(Bundle outState)
@@ -49,11 +59,32 @@ namespace App1
             ShowNoteContent(position);
         }
 
-        void ShowNoteContent(int playId)
+        void ShowNoteContent(int showId)
         {
-            var intent = new Intent(Activity, typeof(NoteActivity));
-            intent.PutExtra("current_id", notes[playId].Id);
-            StartActivity(intent);
+            selectedShowId = showId;
+
+            if (showingTwoFragments)
+            {
+                ListView.SetItemChecked(selectedShowId, true);
+
+                var showNoteFragment = FragmentManager.FindFragmentById(Resource.Id.playquote_container) as NoteFragment;
+
+                if (showNoteFragment == null || showNoteFragment.ShowId != showId)
+                {
+                    var container = Activity.FindViewById(Resource.Id.playquote_container);
+                    var quoteFrag = NoteFragment.NewInstance(selectedShowId);
+
+                    FragmentTransaction ft = FragmentManager.BeginTransaction();
+                    ft.Replace(Resource.Id.playquote_container, quoteFrag);
+                    ft.Commit();
+                }
+            }
+            else
+            {
+                var intent = new Intent(Activity, typeof(NoteActivity));
+                intent.PutExtra("current_id", showId);
+                StartActivity(intent);
+            }
         }
     }
 }
