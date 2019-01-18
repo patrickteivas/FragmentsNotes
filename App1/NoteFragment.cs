@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -36,7 +36,7 @@ namespace App1
 
             var textView = new EditText(Activity);
             textView.Tag = notes[ShowId].Id;
-            textView.TextChanged += TextView_TextChanged;
+            //textView.TextChanged += TextView_TextChanged; // Prevent app from turning into landscape mode.
             var padding = Convert.ToInt32(TypedValue.ApplyDimension(ComplexUnitType.Dip, 4, Activity.Resources.DisplayMetrics));
             textView.SetPadding(padding, padding, padding, padding);
             textView.TextSize = 24;
@@ -48,10 +48,11 @@ namespace App1
             return scroller;
         }
 
-        private void TextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
-        {
-            var textView = (EditText)sender;
-            databaseService.EditNote((int)textView.Tag, textView.Text);
-        }
+        //private void TextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        //{
+        //    var textView = (EditText)sender;
+        //    databaseService.EditNote((int)textView.Tag, textView.Text);
+        //    Task.Delay(2000);
+        //}
     }
 }

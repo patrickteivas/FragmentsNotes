@@ -20,7 +20,7 @@ namespace App1
 
             var addButton = FindViewById<Button>(Resource.Id.addButton);
 
-            if(addButton != null)
+            if (addButton != null)
                 addButton.Click += AddButton_Click;
         }
 

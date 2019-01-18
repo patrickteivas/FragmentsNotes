@@ -20,7 +20,7 @@ namespace App1
 
         public void CreateDatabaseWithTable()
         {
-            string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "myNotes.db3");
+            string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "myFragmentNotes.db3");
             db = new SQLiteConnection(dbPath);
             db.CreateTable<Note>();
         }
@@ -47,6 +47,7 @@ namespace App1
         {
             Note editNote = new Note();
             editNote.Id = id;
+            editNote.Title = GetOneNote(id).Title;
             editNote.Content = content;
             db.Update(editNote);
         }
