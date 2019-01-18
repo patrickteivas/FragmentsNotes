@@ -31,7 +31,7 @@ namespace App1
             databaseService.CreateDatabaseWithTable();
             notes = databaseService.GetAllNotes();
 
-            ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x=>x.Title).ToArray());
+            ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x => x.Title).ToArray());
 
             if (savedInstanceState != null)
             {
@@ -61,17 +61,18 @@ namespace App1
 
         void ShowNoteContent(int showId)
         {
-            selectedShowId = showId;
 
             if (showingTwoFragments)
             {
+                selectedShowId = showId;
+
                 ListView.SetItemChecked(selectedShowId, true);
 
                 var showNoteFragment = FragmentManager.FindFragmentById(Resource.Id.playquote_container) as NoteFragment;
 
                 if (showNoteFragment == null || showNoteFragment.ShowId != showId)
                 {
-                    var container = Activity.FindViewById(Resource.Id.playquote_container);
+                    //var container = Activity.FindViewById(Resource.Id.playquote_container);
                     var quoteFrag = NoteFragment.NewInstance(selectedShowId);
 
                     FragmentTransaction ft = FragmentManager.BeginTransaction();

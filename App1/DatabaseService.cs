@@ -43,11 +43,10 @@ namespace App1
             db.Insert(newNote);
         }
 
-        public void EditNote(int id, DateTime date, string title, string content)
+        public void EditNote(int id, string content)
         {
             Note editNote = new Note();
             editNote.Id = id;
-            editNote.Title = title;
             editNote.Content = content;
             db.Update(editNote);
         }

@@ -2405,6 +2405,9 @@ namespace App1
 			// aapt resource value: 0x7f080027
 			public const int add = 2131230759;
 			
+			// aapt resource value: 0x7f0800b2
+			public const int addButton = 2131230898;
+			
 			// aapt resource value: 0x7f080070
 			public const int alertTitle = 2131230832;
 			
@@ -2428,9 +2431,6 @@ namespace App1
 			
 			// aapt resource value: 0x7f08003d
 			public const int bottom = 2131230781;
-			
-			// aapt resource value: 0x7f0800b2
-			public const int button1 = 2131230898;
 			
 			// aapt resource value: 0x7f080063
 			public const int buttonPanel = 2131230819;
@@ -2615,6 +2615,9 @@ namespace App1
 			// aapt resource value: 0x7f08003b
 			public const int never = 2131230779;
 			
+			// aapt resource value: 0x7f0800b1
+			public const int newTitleEditText = 2131230897;
+			
 			// aapt resource value: 0x7f080022
 			public const int none = 2131230754;
 			
@@ -2785,9 +2788,6 @@ namespace App1
 			
 			// aapt resource value: 0x7f08001b
 			public const int text2 = 2131230747;
-			
-			// aapt resource value: 0x7f0800b1
-			public const int textInputEditText1 = 2131230897;
 			
 			// aapt resource value: 0x7f08006a
 			public const int textSpacerNoButtons = 2131230826;

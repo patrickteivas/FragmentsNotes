@@ -36,7 +36,7 @@ namespace App1
 
             var notes = databaseService.GetAllNotes();
 
-            var textView = new TextView(Activity);
+            var textView = new EditText(Activity);
             var padding = Convert.ToInt32(TypedValue.ApplyDimension(ComplexUnitType.Dip, 4, Activity.Resources.DisplayMetrics));
             textView.SetPadding(padding, padding, padding, padding);
             textView.TextSize = 24;
