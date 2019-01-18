@@ -16,6 +16,7 @@ namespace App1
     public class NoteFragment : Fragment
     {
         public int ShowId => Arguments.GetInt("current_id", 0);
+        public DatabaseService databaseService = new DatabaseService();
 
         public static NoteFragment NewInstance(int playId)
         {
@@ -27,16 +28,15 @@ namespace App1
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             if (container == null)
-            {
                 return null;
-            }
 
-            var databaseService = new DatabaseService();
             databaseService.CreateDatabaseWithTable();
 
             var notes = databaseService.GetAllNotes();
 
             var textView = new EditText(Activity);
+            textView.Tag = notes[ShowId].Id;
+            textView.TextChanged += TextView_TextChanged;
             var padding = Convert.ToInt32(TypedValue.ApplyDimension(ComplexUnitType.Dip, 4, Activity.Resources.DisplayMetrics));
             textView.SetPadding(padding, padding, padding, padding);
             textView.TextSize = 24;
@@ -46,6 +46,12 @@ namespace App1
             scroller.AddView(textView);
 
             return scroller;
+        }
+
+        private void TextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            var textView = (EditText)sender;
+            databaseService.EditNote((int)textView.Tag, textView.Text);
         }
     }
 }
