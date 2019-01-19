@@ -31,6 +31,11 @@ namespace App1
             databaseService.CreateDatabaseWithTable();
             notes = databaseService.GetAllNotes();
 
+            var addButton = Activity.FindViewById<Button>(Resource.Id.addButton);
+
+            if (addButton != null)
+                addButton.Click += AddButton_Click;
+
             ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x => x.Title).ToArray());
 
             if (savedInstanceState != null)
@@ -61,7 +66,6 @@ namespace App1
 
         void ShowNoteContent(int showId)
         {
-
             if (showingTwoFragments)
             {
                 selectedShowId = showId;
@@ -85,6 +89,24 @@ namespace App1
                 var intent = new Intent(Activity, typeof(NoteActivity));
                 intent.PutExtra("current_id", showId);
                 StartActivity(intent);
+            }
+        }
+
+        private void AddButton_Click(object sender, System.EventArgs e)
+        {
+            var newNoteEditText = Activity.FindViewById<EditText>(Resource.Id.newTitleEditText);
+
+            if (!string.IsNullOrEmpty(newNoteEditText.Text) || !string.IsNullOrWhiteSpace(newNoteEditText.Text))
+            {
+                var databaseService = new DatabaseService();
+                databaseService.CreateDatabaseWithTable();
+
+                databaseService.AddNote(newNoteEditText.Text, "");
+                newNoteEditText.Text = "";
+
+                notes = databaseService.GetAllNotes();
+
+                ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x => x.Title).ToArray());
             }
         }
     }
