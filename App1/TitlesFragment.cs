@@ -28,9 +28,6 @@ namespace App1
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
-            var databaseService = new DatabaseService();
-            databaseService.CreateDatabaseWithTable();
-            notes = databaseService.GetAllNotes();
 
             var addButton = Activity.FindViewById<Button>(Resource.Id.addButton);
 
@@ -42,7 +39,7 @@ namespace App1
             if (deleteButton != null)
                 deleteButton.Click += DeleteButton_Click;
 
-            ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x => x.Title).ToArray());
+            UpdateList();
 
             if (savedInstanceState != null)
             {
@@ -82,9 +79,8 @@ namespace App1
                 databaseService.CreateDatabaseWithTable();
 
                 databaseService.DeleteNote(notes[position].Id);
-                notes = databaseService.GetAllNotes();
 
-                ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x => x.Title).ToArray());
+                UpdateList();
 
                 isDeleting = false;
             }
@@ -102,7 +98,6 @@ namespace App1
 
                 if (showNoteFragment == null || showNoteFragment.ShowId != showId)
                 {
-                    //var container = Activity.FindViewById(Resource.Id.playquote_container);
                     var quoteFrag = NoteFragment.NewInstance(selectedShowId);
 
                     FragmentTransaction ft = FragmentManager.BeginTransaction();
@@ -130,10 +125,16 @@ namespace App1
                 databaseService.AddNote(newNoteEditText.Text, "");
                 newNoteEditText.Text = "";
 
-                notes = databaseService.GetAllNotes();
-
-                ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x => x.Title).ToArray());
+                UpdateList();
             }
+        }
+
+        public void UpdateList()
+        {
+            var databaseService = new DatabaseService();
+            databaseService.CreateDatabaseWithTable();
+            notes = databaseService.GetAllNotes();
+            ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x => x.Title).ToArray());
         }
     }
 }

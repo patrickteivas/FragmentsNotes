@@ -43,11 +43,11 @@ namespace App1
             db.Insert(newNote);
         }
 
-        public void EditNote(int id, string content)
+        public void EditNote(int id, string title, string content)
         {
             Note editNote = new Note();
             editNote.Id = id;
-            editNote.Title = GetOneNote(id).Title;
+            editNote.Title = title;
             editNote.Content = content;
             db.Update(editNote);
         }

@@ -31,29 +31,47 @@ namespace App1
                 return null;
 
             databaseService.CreateDatabaseWithTable();
-
             var notes = databaseService.GetAllNotes();
 
             var textView = new EditText(Activity);
             textView.Tag = notes[ShowId].Id;
-
-            textView.TextChanged += TextView_TextChanged;
-
-            var padding = Convert.ToInt32(TypedValue.ApplyDimension(ComplexUnitType.Dip, 4, Activity.Resources.DisplayMetrics));
-            textView.SetPadding(padding, padding, padding, padding);
             textView.TextSize = 24;
             textView.Text = notes[ShowId].Content;
+            textView.TextChanged += TextView_TextChanged;
+
+            var titleTextView = new EditText(Activity);
+            titleTextView.Tag = notes[ShowId].Id;
+            titleTextView.TextSize = 24;
+            titleTextView.Text = notes[ShowId].Title;
+            titleTextView.TextChanged += TitleTextView_TextChanged;
+
+            var padding = Convert.ToInt32(TypedValue.ApplyDimension(ComplexUnitType.Dip, 4, Activity.Resources.DisplayMetrics));
+            var layout = new LinearLayout(Activity);
+            layout.SetPadding(padding, padding, padding, padding);
+            layout.Orientation = Orientation.Vertical;
+
+            layout.AddView(titleTextView); 
+            layout.AddView(textView);
 
             var scroller = new ScrollView(Activity);
-            scroller.AddView(textView);
+            scroller.AddView(layout);
 
             return scroller;
+        }
+
+        private void TitleTextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            var textView = (EditText)sender;
+            int id = (int)textView.Tag;
+            databaseService.EditNote(id, textView.Text, databaseService.GetOneNote(id).Content);
+            Task.Delay(2000);
         }
 
         private void TextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
             var textView = (EditText)sender;
-            databaseService.EditNote((int)textView.Tag, textView.Text);
+            int id = (int)textView.Tag;
+            databaseService.EditNote(id, databaseService.GetOneNote(id).Title, textView.Text);
             Task.Delay(2000);
         }
     }
