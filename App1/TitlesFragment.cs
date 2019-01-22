@@ -18,6 +18,7 @@ namespace App1
         bool showingTwoFragments;
         int selectedShowId;
         public List<Note> notes;
+        public bool isDeleting = false;
 
         public TitlesFragment()
         {
@@ -36,6 +37,11 @@ namespace App1
             if (addButton != null)
                 addButton.Click += AddButton_Click;
 
+            var deleteButton = Activity.FindViewById<Button>(Resource.Id.deleteButton);
+
+            if (deleteButton != null)
+                deleteButton.Click += DeleteButton_Click;
+
             ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x => x.Title).ToArray());
 
             if (savedInstanceState != null)
@@ -53,6 +59,11 @@ namespace App1
             }
         }
 
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            isDeleting = true;
+        }
+
         public override void OnSaveInstanceState(Bundle outState)
         {
             base.OnSaveInstanceState(outState);
@@ -61,7 +72,22 @@ namespace App1
 
         public override void OnListItemClick(ListView l, View v, int position, long id)
         {
-            ShowNoteContent(position);
+            if (!isDeleting)
+            {
+                ShowNoteContent(position);
+            }
+            else
+            {
+                var databaseService = new DatabaseService();
+                databaseService.CreateDatabaseWithTable();
+
+                databaseService.DeleteNote(notes[position].Id);
+                notes = databaseService.GetAllNotes();
+
+                ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x => x.Title).ToArray());
+
+                isDeleting = false;
+            }
         }
 
         void ShowNoteContent(int showId)
@@ -92,7 +118,7 @@ namespace App1
             }
         }
 
-        private void AddButton_Click(object sender, System.EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
         {
             var newNoteEditText = Activity.FindViewById<EditText>(Resource.Id.newTitleEditText);
 
