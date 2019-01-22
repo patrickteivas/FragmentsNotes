@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
+using Android.Views;
 
 namespace App1
 {
@@ -13,10 +14,6 @@ namespace App1
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
-
-            var toolbar = FindViewById<Toolbar>(Resource.Layout.toolbar);
-
-            SetActionBar(toolbar);
         }
     }
 }
