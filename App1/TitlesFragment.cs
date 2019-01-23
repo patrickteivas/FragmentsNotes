@@ -17,12 +17,21 @@ namespace App1
     {
         bool showingTwoFragments;
         int selectedShowId;
-        public List<Note> notes;
-        public bool isDeleting = false;
+
+        private List<Note> notes;
+        private bool isDeleting = false;
+        private DatabaseService databaseService;
 
         public TitlesFragment()
         {
-            // Being explicit about the requirement for a default constructor.
+            databaseService = new DatabaseService();
+            databaseService.CreateDatabaseWithTable();
+        }
+
+        public void UpdateList()
+        {
+            notes = databaseService.GetAllNotes();
+            ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x => x.Title).ToArray());
         }
 
         public override void OnActivityCreated(Bundle savedInstanceState)
@@ -30,12 +39,10 @@ namespace App1
             base.OnActivityCreated(savedInstanceState);
 
             var addButton = Activity.FindViewById<Button>(Resource.Id.addButton);
-
             if (addButton != null)
                 addButton.Click += AddButton_Click;
 
             var deleteButton = Activity.FindViewById<Button>(Resource.Id.deleteButton);
-
             if (deleteButton != null)
                 deleteButton.Click += DeleteButton_Click;
 
@@ -75,11 +82,7 @@ namespace App1
             }
             else
             {
-                var databaseService = new DatabaseService();
-                databaseService.CreateDatabaseWithTable();
-
                 databaseService.DeleteNote(notes[position].Id);
-
                 UpdateList();
 
                 isDeleting = false;
@@ -91,11 +94,9 @@ namespace App1
             if (showingTwoFragments)
             {
                 selectedShowId = showId;
-
                 ListView.SetItemChecked(selectedShowId, true);
 
                 var showNoteFragment = FragmentManager.FindFragmentById(Resource.Id.playquote_container) as NoteFragment;
-
                 if (showNoteFragment == null || showNoteFragment.ShowId != showId)
                 {
                     var quoteFrag = NoteFragment.NewInstance(selectedShowId);
@@ -104,6 +105,7 @@ namespace App1
                     ft.Replace(Resource.Id.playquote_container, quoteFrag);
                     ft.Commit();
                 }
+
             }
             else
             {
@@ -119,22 +121,11 @@ namespace App1
 
             if (!string.IsNullOrEmpty(newNoteEditText.Text) || !string.IsNullOrWhiteSpace(newNoteEditText.Text))
             {
-                var databaseService = new DatabaseService();
-                databaseService.CreateDatabaseWithTable();
-
                 databaseService.AddNote(newNoteEditText.Text, "");
                 newNoteEditText.Text = "";
 
                 UpdateList();
             }
-        }
-
-        public void UpdateList()
-        {
-            var databaseService = new DatabaseService();
-            databaseService.CreateDatabaseWithTable();
-            notes = databaseService.GetAllNotes();
-            ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItemActivated1, notes.Select(x => x.Title).ToArray());
         }
     }
 }
