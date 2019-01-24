@@ -5,6 +5,9 @@ using Android.Runtime;
 using Android.Widget;
 using Android.Views;
 
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Distribute;
+
 namespace App1
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
@@ -13,6 +16,9 @@ namespace App1
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            AppCenter.Start("{Your Xamarin Android App Secret}", typeof(Distribute));
+
             SetContentView(Resource.Layout.activity_main);
         }
     }
