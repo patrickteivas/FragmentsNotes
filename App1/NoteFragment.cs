@@ -16,12 +16,12 @@ namespace App1
     public class NoteFragment : Fragment
     {
         public int ShowId => Arguments.GetInt("current_id", 0);
-        public DatabaseService databaseService = new DatabaseService();
+        private DatabaseService databaseService = new DatabaseService();
 
-        public static NoteFragment NewInstance(int playId)
+        public static NoteFragment NewInstance(int showId)
         {
             var bundle = new Bundle();
-            bundle.PutInt("current_id", playId);
+            bundle.PutInt("current_id", showId);
             return new NoteFragment { Arguments = bundle };
         }
 
@@ -47,8 +47,8 @@ namespace App1
 
             var padding = Convert.ToInt32(TypedValue.ApplyDimension(ComplexUnitType.Dip, 4, Activity.Resources.DisplayMetrics));
             var layout = new LinearLayout(Activity);
-            layout.SetPadding(padding, padding, padding, padding);
             layout.Orientation = Orientation.Vertical;
+            layout.SetPadding(padding, padding, padding, padding);
 
             layout.AddView(titleTextView); 
             layout.AddView(textView);

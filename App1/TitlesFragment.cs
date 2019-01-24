@@ -105,7 +105,6 @@ namespace App1
                     ft.Replace(Resource.Id.playquote_container, quoteFrag);
                     ft.Commit();
                 }
-
             }
             else
             {
@@ -126,6 +125,12 @@ namespace App1
 
                 UpdateList();
             }
+        }
+
+        public override void OnResume()
+        {
+            base.OnResume();
+            UpdateList();
         }
     }
 }
