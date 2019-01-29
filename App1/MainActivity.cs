@@ -17,7 +17,7 @@ namespace App1
         {
             base.OnCreate(savedInstanceState);
 
-            AppCenter.Start("{Your Xamarin Android App Secret}", typeof(Distribute));
+            AppCenter.Start("b3c9dd2b-93d3-4579-8712-15f4a6ec8e2a", typeof(Distribute));
 
             SetContentView(Resource.Layout.activity_main);
         }

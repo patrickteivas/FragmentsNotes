@@ -26,6 +26,25 @@ namespace App1
 		
 		public static void UpdateIdValues()
 		{
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_dialog_actioned_on_disabled_toast = global::App1.Resource.String.appcenter_distribute_dialog_actioned_on_disabled_toast;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_download_progress_number_format = global::App1.Resource.String.appcenter_distribute_download_progress_number_format;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_downloading_mandatory_update = global::App1.Resource.String.appcenter_distribute_downloading_mandatory_update;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_install = global::App1.Resource.String.appcenter_distribute_install;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_install_ready_message = global::App1.Resource.String.appcenter_distribute_install_ready_message;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_install_ready_title = global::App1.Resource.String.appcenter_distribute_install_ready_title;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_notification_category = global::App1.Resource.String.appcenter_distribute_notification_category;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_unknown_sources_dialog_message = global::App1.Resource.String.appcenter_distribute_unknown_sources_dialog_message;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_unknown_sources_dialog_settings = global::App1.Resource.String.appcenter_distribute_unknown_sources_dialog_settings;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_dialog_download = global::App1.Resource.String.appcenter_distribute_update_dialog_download;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_dialog_message_mandatory = global::App1.Resource.String.appcenter_distribute_update_dialog_message_mandatory;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_dialog_message_optional = global::App1.Resource.String.appcenter_distribute_update_dialog_message_optional;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_dialog_postpone = global::App1.Resource.String.appcenter_distribute_update_dialog_postpone;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_dialog_title = global::App1.Resource.String.appcenter_distribute_update_dialog_title;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_dialog_view_release_notes = global::App1.Resource.String.appcenter_distribute_update_dialog_view_release_notes;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_failed_dialog_ignore = global::App1.Resource.String.appcenter_distribute_update_failed_dialog_ignore;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_failed_dialog_message = global::App1.Resource.String.appcenter_distribute_update_failed_dialog_message;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_failed_dialog_reinstall = global::App1.Resource.String.appcenter_distribute_update_failed_dialog_reinstall;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_failed_dialog_title = global::App1.Resource.String.appcenter_distribute_update_failed_dialog_title;
 		}
 		
 		public partial class Animation
@@ -3237,14 +3256,71 @@ namespace App1
 			// aapt resource value: 0x7f090010
 			public const int abc_toolbar_collapse_description = 2131296272;
 			
-			// aapt resource value: 0x7f090028
-			public const int action_settings = 2131296296;
+			// aapt resource value: 0x7f09003b
+			public const int action_settings = 2131296315;
 			
-			// aapt resource value: 0x7f090027
-			public const int app_name = 2131296295;
+			// aapt resource value: 0x7f09003a
+			public const int app_name = 2131296314;
 			
 			// aapt resource value: 0x7f09001e
 			public const int appbar_scrolling_view_behavior = 2131296286;
+			
+			// aapt resource value: 0x7f090027
+			public const int appcenter_distribute_dialog_actioned_on_disabled_toast = 2131296295;
+			
+			// aapt resource value: 0x7f090028
+			public const int appcenter_distribute_download_progress_number_format = 2131296296;
+			
+			// aapt resource value: 0x7f090029
+			public const int appcenter_distribute_downloading_mandatory_update = 2131296297;
+			
+			// aapt resource value: 0x7f09002a
+			public const int appcenter_distribute_install = 2131296298;
+			
+			// aapt resource value: 0x7f09002b
+			public const int appcenter_distribute_install_ready_message = 2131296299;
+			
+			// aapt resource value: 0x7f09002c
+			public const int appcenter_distribute_install_ready_title = 2131296300;
+			
+			// aapt resource value: 0x7f09002d
+			public const int appcenter_distribute_notification_category = 2131296301;
+			
+			// aapt resource value: 0x7f09002e
+			public const int appcenter_distribute_unknown_sources_dialog_message = 2131296302;
+			
+			// aapt resource value: 0x7f09002f
+			public const int appcenter_distribute_unknown_sources_dialog_settings = 2131296303;
+			
+			// aapt resource value: 0x7f090030
+			public const int appcenter_distribute_update_dialog_download = 2131296304;
+			
+			// aapt resource value: 0x7f090031
+			public const int appcenter_distribute_update_dialog_message_mandatory = 2131296305;
+			
+			// aapt resource value: 0x7f090032
+			public const int appcenter_distribute_update_dialog_message_optional = 2131296306;
+			
+			// aapt resource value: 0x7f090033
+			public const int appcenter_distribute_update_dialog_postpone = 2131296307;
+			
+			// aapt resource value: 0x7f090034
+			public const int appcenter_distribute_update_dialog_title = 2131296308;
+			
+			// aapt resource value: 0x7f090035
+			public const int appcenter_distribute_update_dialog_view_release_notes = 2131296309;
+			
+			// aapt resource value: 0x7f090036
+			public const int appcenter_distribute_update_failed_dialog_ignore = 2131296310;
+			
+			// aapt resource value: 0x7f090037
+			public const int appcenter_distribute_update_failed_dialog_message = 2131296311;
+			
+			// aapt resource value: 0x7f090038
+			public const int appcenter_distribute_update_failed_dialog_reinstall = 2131296312;
+			
+			// aapt resource value: 0x7f090039
+			public const int appcenter_distribute_update_failed_dialog_title = 2131296313;
 			
 			// aapt resource value: 0x7f09001f
 			public const int bottom_sheet_behavior = 2131296287;
